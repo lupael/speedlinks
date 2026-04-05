@@ -21,19 +21,20 @@
   const hamburger = document.querySelector('.hamburger');
   const mobileMenu = document.querySelector('.mobile-menu');
   if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      const open = hamburger.classList.toggle('active');
+    const setMobileMenuState = (open) => {
+      hamburger.classList.toggle('active', open);
       mobileMenu.classList.toggle('open', open);
-      hamburger.setAttribute('aria-expanded', open);
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+
+    hamburger.addEventListener('click', () => {
+      setMobileMenuState(!hamburger.classList.contains('active'));
     });
 
     // Close menu on any link tap
     mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      });
+      link.addEventListener('click', () => setMobileMenuState(false));
     });
   }
 
@@ -42,10 +43,14 @@
   const prices = document.querySelectorAll('[data-monthly][data-annual]');
 
   if (billingToggle && prices.length) {
+    const periodEls = document.querySelectorAll('.plan-period');
     const update = () => {
       const annual = billingToggle.checked;
       prices.forEach(el => {
         el.textContent = annual ? el.dataset.annual : el.dataset.monthly;
+      });
+      periodEls.forEach(el => {
+        el.textContent = annual ? '/yr' : '/month';
       });
     };
     billingToggle.addEventListener('change', update);
@@ -93,6 +98,13 @@
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      // Validate required fields before proceeding
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
       const btn = form.querySelector('.form-submit');
       btn.disabled = true;
       btn.textContent = 'Sending…';
