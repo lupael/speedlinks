@@ -328,7 +328,6 @@ section { padding: 80px 0; }
   gap: 32px;
   flex-wrap: wrap;
 }
-.stat-item {}
 .stat-number {
   font-size: 1.6rem;
   font-weight: var(--fw-extrabold);
