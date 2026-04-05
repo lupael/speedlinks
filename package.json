@@ -1,0 +1,33 @@
+{
+  "name": "speedlinks-website",
+  "version": "1.0.0",
+  "description": "Official website for SpeedLinks – Best Internet Service Provider in Rangpur, Bangladesh",
+  "homepage": "https://speedlinks.com.bd",
+  "keywords": [
+    "isp",
+    "internet",
+    "broadband",
+    "fiber",
+    "rangpur",
+    "bangladesh"
+  ],
+  "scripts": {
+    "start": "npx serve . -p 3000",
+    "dev": "npx live-server --port=3000 --open=/index.html",
+    "lint:html": "npx htmlhint index.html",
+    "lint:css": "npx stylelint css/style.css",
+    "validate": "npm run lint:html && npm run lint:css"
+  },
+  "devDependencies": {
+    "htmlhint": "^1.1.4",
+    "live-server": "^1.2.2",
+    "serve": "^14.2.4",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}

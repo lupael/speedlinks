@@ -668,6 +668,10 @@ section { padding: 80px 0; }
   gap: 28px;
   align-items: start;
 }
+/* 6-plan layout: force 3 columns on wide screens */
+.pricing-grid-6 {
+  grid-template-columns: repeat(3, 1fr);
+}
 .pricing-card {
   background: var(--clr-white);
   border: 1px solid var(--clr-grey-100);
@@ -1077,6 +1081,7 @@ section { padding: 80px 0; }
   .contact-grid { grid-template-columns: 1fr; gap: 32px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .steps-wrap::before { display: none; }
+  .pricing-grid-6 { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -1086,6 +1091,7 @@ section { padding: 80px 0; }
   .mobile-menu.open { display: flex; }
   .form-row { grid-template-columns: 1fr; }
   .pricing-card.popular { transform: scale(1); }
+  .pricing-grid-6 { grid-template-columns: 1fr; }
   .hero { padding-top: 120px; }
 }
 
